@@ -1,0 +1,23 @@
+{
+  "name": "publisher",
+  "version": "1.0.0",
+  "description": "Publish geoserver layers",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Hüseyin Soytürk",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "electron": "^2.0.8",
+    "express": "^4.16.3",
+    "fetch": "^1.1.0",
+    "nodemon": "^1.18.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^12.1.1"
+  }
+}

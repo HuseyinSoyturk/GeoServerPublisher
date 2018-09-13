@@ -1,0 +1,52 @@
+<script src="./index.js"></script>
+<link rel="stylesheet" type="text/css" href="index.css">
+
+<div id="userForm" class="user-form">
+    <h2>SERVICE INFORMATIONS</h2>
+    <div class="input-container">
+        <i class="icon">Username : </i>
+        <input id="formUsername" class="input-field" type="text" required>
+    </div>
+    <div class="input-container">
+        <i class="icon">Password : </i>
+        <input id="formPassword" class="input-field" type="text" required>
+    </div>
+    <div class="input-container">
+        <i class="icon">Host : </i>
+        <input id="formHost" class="input-field" type="text" required>
+    </div>
+    <div class="input-container">
+        <i class="icon">Port : </i>
+        <input id="formPort" class="input-field" type="text" required>
+    </div>
+    <div class="input-container">
+        <i class="icon">Workspace : </i>
+        <input id="formWorkspace" class="input-field" type="text" required>
+    </div>
+    <div class="input-container">
+        <i class="icon">DataStore : </i>
+        <input id="formDatastore" class="input-field" type="text" required>
+    </div>
+    <br>
+    <div>
+        <button class="btn" id="submitButton" onclick="onClickListLayer()">LIST ALL LAYERS</button>
+    </div>
+    <br>
+    <div>
+        <button class="btn" type="reset">RESET</button>
+    </div>
+</div>
+<div class="table-div">
+    <div>
+        <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search for Layer Name ..." title="Type in a name">
+        <table id="myTable">
+            <tr class="header">
+                <th style="width:10%;"></th>
+                <th style="width:60%;">Layer Name</th>
+                <th style="width:30%;text-align: center;">Publish Status</th>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <button style="float:right ; width:200px" class="btn" onclick="onclickPublishSelected()">PUBLISH SELECTED</button>
+</div>
