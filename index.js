@@ -20,6 +20,86 @@ function onChangeToggle(layerNumber, toggle) {
     }
 }
 
+function onClickListWorkspaces() {
+
+    let field = document.getElementById('workspaceForm')
+    field.style.display = 'none'
+
+    let select = document.getElementById('workspaces')
+    select.options.length = 1
+
+    // let option = document.createElement('option')
+    // option.value = workspace
+    // option.text = workspace
+    // select.add(option)
+
+    username = document.getElementById('formUsername').value
+    password = document.getElementById('formPassword').value
+    host = document.getElementById('formHost').value
+    port = document.getElementById('formPort').value
+    let urlW = "http://" + host + ":" + port.toString() + "/geoserver/rest/workspaces.json"
+
+    request.get(urlW, {
+        "Accept": "application/json",
+        "content-type": "application/json",
+        'auth': {
+            'user': username,
+            'pass': password,
+            'sendImmediately': false
+        }
+    }, (err, res, body) => {
+        body = JSON.parse(body)
+        let workspaceList = body.workspaces.workspace.map(x => x.name)
+
+        for (let workspace of workspaceList) {
+            let option = document.createElement('option')
+            option.value = workspace
+            option.text = workspace
+            select.add(option)
+        }
+        field.style.display = 'flex'
+    })
+}
+
+function onSelectWorkspace(workspaceEl) {
+
+    let field = document.getElementById('datastoreForm')
+    field.style.display = 'none'
+
+    let select = document.getElementById('datastores')
+    select.options.length = 1
+
+    workspace = workspaceEl.value
+
+    let urlW = "http://" + host + ":" + port.toString() + "/geoserver/rest/workspaces/" + workspace + "/datastores.json"
+
+    request.get(urlW, {
+        "Accept": "application/json",
+        "content-type": "application/json",
+        'auth': {
+            'user': username,
+            'pass': password,
+            'sendImmediately': false
+        }
+    }, (err, res, body) => {
+        body = JSON.parse(body)
+        let datastoreList = body.dataStores.dataStore.map(x => x.name)
+
+        for (let datastore of datastoreList) {
+            let option = document.createElement('option')
+            option.value = datastore
+            option.text = datastore
+            select.add(option)
+        }
+        field.style.display = 'flex'
+    })
+}
+
+function onSelectDatastore(datastoreEl) {
+    datastore = datastoreEl.value
+    document.getElementById('buttons').style.display = 'block'
+}
+
 function onClickListLayer() {
 
     let trList = document.getElementById('myTable').childNodes[1]
@@ -27,12 +107,12 @@ function onClickListLayer() {
         trList.removeChild(trList.lastChild);
     }
 
-    username = document.getElementById('formUsername').value
-    password = document.getElementById('formPassword').value
-    host = document.getElementById('formHost').value
-    port = document.getElementById('formPort').value
-    workspace = document.getElementById('formWorkspace').value
-    datastore = document.getElementById('formDatastore').value
+    // username = document.getElementById('formUsername').value
+    // password = document.getElementById('formPassword').value
+    // host = document.getElementById('formHost').value
+    // port = document.getElementById('formPort').value
+    // workspace = document.getElementById('formWorkspace').value
+    // datastore = document.getElementById('formDatastore').value
     url = "http://" + host + ":" + port.toString() + "/geoserver/rest"
 
     // url = "http://192.168.20.114:8091/geoserver/rest",

@@ -19,21 +19,33 @@
         <i class="icon">Port : </i>
         <input id="formPort" class="input-field" type="text" required>
     </div>
-    <div class="input-container">
+    <div>
+        <button class="btn" id="submitButton" onclick="onClickListWorkspaces()">LIST ALL WORKSPACES</button>
+    </div>
+    <br>
+    <div id='workspaceForm' class="input-container" style='display: none;'>
         <i class="icon">Workspace : </i>
-        <input id="formWorkspace" class="input-field" type="text" required>
+        <select class="input-field" id="workspaces" onchange="onSelectWorkspace(this)">
+            <option>Select a workspace...</option>
+        </select>
+        <!-- <input id="formWorkspace" class="input-field" type="text" required> -->
     </div>
-    <div class="input-container">
+    <div id='datastoreForm' class="input-container" style='display: none;'>
         <i class="icon">DataStore : </i>
-        <input id="formDatastore" class="input-field" type="text" required>
+        <select class="input-field" id="datastores" onchange="onSelectDatastore(this)">
+            <option>Select a datastore...</option>
+        </select>
+        <!-- <input id="formDatastore" class="input-field" type="text" required> -->
     </div>
     <br>
-    <div>
-        <button class="btn" id="submitButton" onclick="onClickListLayer()">LIST ALL LAYERS</button>
-    </div>
-    <br>
-    <div>
-        <button class="btn" type="reset">RESET</button>
+    <div id='buttons' style='display: none;'>
+        <div>
+            <button class="btn" id="submitButton" onclick="onClickListLayer()">LIST ALL LAYERS</button>
+        </div>
+        <br>
+        <div>
+            <button class="btn" type="reset">RESET</button>
+        </div>
     </div>
 </div>
 <div class="table-div">
