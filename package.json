@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build:win": "electron-packager . Publisher --platform=win32"
+    "package:win": "electron-packager . Publisher --overwrite --platform=win32 --arch=ia32",
+    "package:linux": "electron-packager . Publisher --overwrite --platform=linux --arch=ia32"
   },
   "author": "Hüseyin Soytürk",
   "license": "ISC",
