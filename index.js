@@ -210,13 +210,35 @@ function onclickPublish(layerNumber) {
     let button = document.getElementById("button" + layerNumber.toString())
     let label = document.getElementById("label" + layerNumber.toString())
 
+    let isChecked = document.getElementById('isBBOXMaxCheckbox').checked
+    let body
+    if (isChecked) {
+        body = '<featureType><name>' + layerName + '</name></featureType>'
+    } else {
+        body = `<featureType><name>${layerName}</name>
+                    <nativeBoundingBox>
+                    <minx>-180</minx>
+                    <maxx>180</maxx>
+                    <miny>-90</miny>
+                    <maxy>90</maxy>
+                    <crs>EPSG:4326</crs>
+                    </nativeBoundingBox>
+                    <latLonBoundingBox>
+                        <minx>-180</minx>
+                        <maxx>180</maxx>
+                        <miny>-90</miny>
+                        <maxy>90</maxy>
+                        <crs>EPSG:4326</crs>
+                    </latLonBoundingBox>
+                </featureType>`
+    }
     request.post(url + '/workspaces/' + workspace + '/datastores/' + datastore + '/featuretypes', {
         method: 'POST',
         headers: {
             'Content-type': 'text/xml',
             'Authorization': "Basic " + new Buffer(username + ":" + password).toString("base64")
         },
-        body: '<featureType><name>' + layerName + '</name></featureType>',
+        body: body,
     }, (err, res, body) => {
         if (err) {
             alert(err)

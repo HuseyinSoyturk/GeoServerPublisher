@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "electron .",
+    "build:win": "electron-packager . Publisher --platform=win32"
   },
   "author": "Hüseyin Soytürk",
   "license": "ISC",
